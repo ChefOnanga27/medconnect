@@ -4,9 +4,9 @@ const db = dbConnect();
 
 export const ServiceModel = {
   // Créer un service
-  create: (nom,Id,description, callback) => {
-    const query = 'INSERT INTO service (nom,Id,description) VALUES (?, ?, ?)';
-    const values = [nom, description,Id];
+  create: (nom, description, hopitalId, callback) => {
+    const query = 'INSERT INTO service (nom, description, hopitalId) VALUES (?, ?, ?)';
+    const values = [nom, description, hopitalId];
     db.query(query, values, (err, results) => {
       if (err) {
         console.error('Erreur lors de la création du service: ', err.message);
@@ -41,9 +41,9 @@ export const ServiceModel = {
   },
 
   // Mettre à jour un service
-  update: (id, nom,description, callback) => {
+  update: (id, nom, description, hopitalId, callback) => {
     const query = 'UPDATE service SET nom = ?, description = ?, hopitalId = ? WHERE id = ?';
-    const values = [nom,id,description];
+    const values = [nom, description, hopitalId, id];
     db.query(query, values, (err, results) => {
       if (err) {
         console.error('Erreur lors de la mise à jour du service: ', err.message);

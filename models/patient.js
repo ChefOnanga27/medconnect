@@ -7,7 +7,7 @@ import { dbConnect } from '../config/db.js';
   export const PatientModel = {
   // Créer un patient
   create: (nom, prenom, dateNaissance, email, telephone, callback) => {
-    const query = 'INSERT INTO patients (nom, prenom, dateNaissance, email, telephone) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO patient (nom, prenom, dateNaissance, email, telephone) VALUES (?, ?, ?, ?, ?)';
     const values = [nom, prenom, dateNaissance, email, telephone];
     db.query(query, values, (err, results) => {
       if (err) {
@@ -20,7 +20,7 @@ import { dbConnect } from '../config/db.js';
 
   // Récupérer tous les patients
   getAllPatients: (callback) => {
-    const query = 'SELECT * FROM patients';
+    const query = 'SELECT * FROM patient';
     db.query(query, (err, results) => {
       if (err) {
         console.error('Erreur lors de la récupération des patients: ', err.message);
@@ -32,7 +32,7 @@ import { dbConnect } from '../config/db.js';
 
   // Récupérer un patient par ID
   getById: (id, callback) => {
-    const query = 'SELECT * FROM patients WHERE id = ?';
+    const query = 'SELECT * FROM patient WHERE id = ?';
     db.query(query, [id], (err, results) => {
       if (err) {
         console.error('Erreur lors de la récupération du patient par ID: ', err.message);
@@ -44,7 +44,7 @@ import { dbConnect } from '../config/db.js';
 
   // Mettre à jour un patient
   update: (id, nom, prenom, dateNaissance, email, telephone, callback) => {
-    const query = 'UPDATE patients SET nom = ?, prenom = ?, dateNaissance = ?, email = ?, telephone = ? WHERE id = ?';
+    const query = 'UPDATE patient SET nom = ?, prenom = ?, dateNaissance = ?, email = ?, telephone = ? WHERE id = ?';
     const values = [nom, prenom, dateNaissance, email, telephone, id];
     db.query(query, values, (err, results) => {
       if (err) {
@@ -57,7 +57,7 @@ import { dbConnect } from '../config/db.js';
 
   // Supprimer un patient
   delete: (id, callback) => {
-    const query = 'DELETE FROM patients WHERE id = ?';
+    const query = 'DELETE FROM patient WHERE id = ?';
     db.query(query, [id], (err, results) => {
       if (err) {
         console.error('Erreur lors de la suppression du patient: ', err.message);

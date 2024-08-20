@@ -18,7 +18,7 @@ export const MedecinModel = {
 
   // Récupérer tous les médecins
   getAllMedecins: (callback) => {
-    const query = 'SELECT * FROM medecins';
+    const query = 'SELECT * FROM medecin';
     db.query(query, (err, results) => {
       if (err) {
         console.error('Erreur lors de la récupération des médecins: ', err.message);
@@ -30,7 +30,7 @@ export const MedecinModel = {
 
   // Récupérer un médecin par ID
   getById: (id, callback) => {
-    const query = 'SELECT * FROM medecins WHERE id = ?';
+    const query = 'SELECT * FROM medecin WHERE id = ?';
     db.query(query, [id], (err, results) => {
       if (err) {
         console.error('Erreur lors de la récupération du médecin par ID: ', err.message);
@@ -42,7 +42,7 @@ export const MedecinModel = {
 
   // Mettre à jour un médecin
   update: (id, nom, prenom, specialite,email, hopitalId, callback) => {
-    const query = 'UPDATE medecins SET nom = ?, prenom = ?, specialite = ?,email= ?, hopitalId = ? WHERE id = ?';
+    const query = 'UPDATE medecin SET nom = ?, prenom = ?, specialite = ?,email= ?, hopitalId = ? WHERE id = ?';
     const values = [nom, prenom, specialite,email, hopitalId, id];
     db.query(query, values, (err, results) => {
       if (err) {
@@ -55,7 +55,7 @@ export const MedecinModel = {
 
   // Supprimer un médecin
   delete: (id, callback) => {
-    const query = 'DELETE FROM medecins WHERE id = ?';
+    const query = 'DELETE FROM medecin WHERE id = ?';
     db.query(query, [id], (err, results) => {
       if (err) {
         console.error('Erreur lors de la suppression du médecin: ', err.message);

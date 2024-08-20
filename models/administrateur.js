@@ -5,7 +5,7 @@ const db = dbConnect();
 export const AdministrateurModel = {
   // Créer un administrateur
   create: (nom, prenom, email, motDePasse, callback) => {
-    const query = 'INSERT INTO administrateurs (nom, prenom, email, motDePasse) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO administrateur (nom, prenom, email, motDePasse) VALUES (?, ?, ?, ?)';
     const values = [nom, prenom, email, motDePasse];
     db.query(query, values, (err, results) => {
       if (err) {
@@ -18,7 +18,7 @@ export const AdministrateurModel = {
 
   // Récupérer tous les administrateurs
   getAllAdministrateurs: (callback) => {
-    const query = 'SELECT * FROM administrateurs';
+    const query = 'SELECT * FROM administrateur';
     db.query(query, (err, results) => {
       if (err) {
         console.error('Erreur lors de la récupération des administrateurs: ', err.message);
@@ -30,7 +30,7 @@ export const AdministrateurModel = {
 
   // Récupérer un administrateur par ID
   getById: (id, callback) => {
-    const query = 'SELECT * FROM administrateurs WHERE id = ?';
+    const query = 'SELECT * FROM administrateur WHERE id = ?';
     db.query(query, [id], (err, results) => {
       if (err) {
         console.error('Erreur lors de la récupération de l\'administrateur par ID: ', err.message);
@@ -42,7 +42,7 @@ export const AdministrateurModel = {
 
   // Mettre à jour un administrateur
   update: (id, nom, prenom, email, motDePasse, callback) => {
-    const query = 'UPDATE administrateurs SET nom = ?, prenom = ?, email = ?, motDePasse = ? WHERE id = ?';
+    const query = 'UPDATE administrateur SET nom = ?, prenom = ?, email = ?, motDePasse = ? WHERE id = ?';
     const values = [nom, prenom, email, motDePasse, id];
     db.query(query, values, (err, results) => {
       if (err) {
@@ -55,7 +55,7 @@ export const AdministrateurModel = {
 
   // Supprimer un administrateur
   delete: (id, callback) => {
-    const query = 'DELETE FROM administrateurs WHERE id = ?';
+    const query = 'DELETE FROM administrateur WHERE id = ?';
     db.query(query, [id], (err, results) => {
       if (err) {
         console.error('Erreur lors de la suppression de l\'administrateur: ', err.message);

@@ -3,65 +3,65 @@ import { dbConnect } from '../config/db.js';
 const db = dbConnect();
 
 export const GestionnaireModel = {
-  // Créer un gestionnaire
   create: (nom, prenom, email, telephone, callback) => {
-    const query = 'INSERT INTO gestionnaires (nom, prenom, email, telephone) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO gestionnaire (nom, prenom, email, telephone) VALUES (?, ?, ?, ?)';
     const values = [nom, prenom, email, telephone];
     db.query(query, values, (err, results) => {
       if (err) {
-        console.error('Erreur lors de la création du gestionnaire: ', err.message);
-        return callback(err, null);
+        console.error('Erreur lors de la création du gestionnaire:', err.message);
+        callback(err, null);
+      } else {
+        callback(null, results);
       }
-      callback(null, results);
     });
   },
 
-  // Récupérer tous les gestionnaires
   getAllGestionnaires: (callback) => {
-    const query = 'SELECT * FROM gestionnaires';
+    const query = 'SELECT * FROM gestionnaire';
     db.query(query, (err, results) => {
       if (err) {
-        console.error('Erreur lors de la récupération des gestionnaires: ', err.message);
-        return callback(err, null);
+        console.error('Erreur lors de la récupération des gestionnaires:', err.message);
+        callback(err, null);
+      } else {
+        callback(null, results);
       }
-      callback(null, results);
     });
   },
 
-  // Récupérer un gestionnaire par ID
   getById: (id, callback) => {
-    const query = 'SELECT * FROM gestionnaires WHERE id = ?';
+    const query = 'SELECT * FROM gestionnaire WHERE id = ?';
     db.query(query, [id], (err, results) => {
       if (err) {
-        console.error('Erreur lors de la récupération du gestionnaire par ID: ', err.message);
-        return callback(err, null);
+        console.error('Erreur lors de la récupération du gestionnaire par ID:', err.message);
+        callback(err, null);
+      } else {
+        callback(null, results[0]);
       }
-      callback(null, results[0]); // Renvoie uniquement le premier résultat
     });
   },
 
-  // Mettre à jour un gestionnaire
   update: (id, nom, prenom, email, telephone, callback) => {
-    const query = 'UPDATE gestionnaires SET nom = ?, prenom = ?, email = ?, telephone = ? WHERE id = ?';
+    const query = 'UPDATE gestionnaire SET nom = ?, prenom = ?, email = ?, telephone = ? WHERE id = ?';
     const values = [nom, prenom, email, telephone, id];
     db.query(query, values, (err, results) => {
       if (err) {
-        console.error('Erreur lors de la mise à jour du gestionnaire: ', err.message);
-        return callback(err, null);
+        console.error('Erreur lors de la mise à jour du gestionnaire:', err.message);
+        callback(err, null);
+      } else {
+        callback(null, results);
       }
-      callback(null, results);
     });
   },
 
-  // Supprimer un gestionnaire
   delete: (id, callback) => {
-    const query = 'DELETE FROM gestionnaires WHERE id = ?';
+    const query = 'DELETE FROM gestionnaire WHERE id = ?';
     db.query(query, [id], (err, results) => {
       if (err) {
-        console.error('Erreur lors de la suppression du gestionnaire: ', err.message);
-        return callback(err, null);
+        console.error('Erreur lors de la suppression du gestionnaire:', err.message);
+        callback(err, null);
+      } else {
+        callback(null, results);
       }
-      callback(null, results);
     });
   }
 };

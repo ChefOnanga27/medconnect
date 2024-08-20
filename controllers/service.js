@@ -30,8 +30,8 @@ export const ServiceController = {
 
   // Créer un service
   createService: (req, res) => {
-    const { nom,Id } = req.body;
-    ServiceModel.create(nom,Id, (err, result) => {
+    const { nom, description, hopitalId } = req.body;
+    ServiceModel.create(nom, description, hopitalId, (err, result) => {
       if (err) {
         console.error('Erreur lors de la création du service:', err.message);
         res.status(500).json({ message: 'Erreur lors de la création du service' });
@@ -44,8 +44,8 @@ export const ServiceController = {
   // Mettre à jour un service
   updateService: (req, res) => {
     const id = req.params.id;
-    const { nom,Id } = req.body;
-    ServiceModel.update(id, nom, (err, result) => {
+    const { nom, description, hopitalId } = req.body;
+    ServiceModel.update(id, nom, description, hopitalId, (err, result) => {
       if (err) {
         console.error('Erreur lors de la mise à jour du service:', err.message);
         res.status(500).json({ message: 'Erreur lors de la mise à jour du service' });
