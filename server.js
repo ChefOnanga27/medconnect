@@ -1,7 +1,8 @@
 
-import mysql from 'mysql2/promise';
+
 import dotenv from 'dotenv';
-import { dbConnect } from './config/db.js';
+
+import cors from 'cors';
 
 import administrateur from './routes/administrateur.js';
 import gestionnaire from './routes/gestionnaire.js';
@@ -30,6 +31,9 @@ app.get('/', (req, res) => {
 
 
 //appel des routes 
+app.use(cors({
+  origin: 'http://localhost:5500' // URL du front-end
+}));;
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
